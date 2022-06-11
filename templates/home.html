@@ -27,16 +27,16 @@
                             </small>
                         </p>
                         {% endif %}
-                        
+
                         <p>
                             <small class="fw-light">
                                 {{ project.created_at|date:"M d Y"}}
                             </small>
                         </p>
                      </div>
-                    <small class="card-text fw-light">
-                        {{ project.description }}
-                    </small>
+                     <div class="profile">
+                         <img src="{{ user.profile.profile_pic.url }}" alt="" class="img-fluid">
+                     </div>
                 </div>
             </div>
         </div>

@@ -7,3 +7,9 @@ section .row .card img {
     height: 70%;
     width: auto;
 }
+
+section .row .card .card-body img {
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50%;
+}
