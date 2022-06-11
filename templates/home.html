@@ -10,16 +10,23 @@
 <section class="content container">
     <div class="row">
         {% for project in projects %}
-        <div class="col-md-6 col-lg-3 col-xl-4 my-4">
-            <div class="card" style="width: 18rem;">
-                <img src="{{ project.landing_page.url }}" class="card-img-top" alt="...">
+        <div class="col-md-6 col-lg-4 my-4">
+            <div class="card">
+                <img src="{{ project.landing_page.url }}" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
-                     <h5 class="card-title">
-                        {{ project.title }}
-                    </h5>
-                    <p class="card-text">
+                     <div class="d-flex justify-content-between">
+                        <p class="card-title fw-bold">
+                            {{ project.title }}
+                        </p>
+                        <p>
+                            <small class="fw-light">
+                                {{ project.created_at|date:"M d Y"}}
+                            </small>
+                        </p>
+                     </div>
+                    <small class="card-text fw-light">
                         {{ project.description }}
-                    </p>
+                    </small>
                 </div>
             </div>
         </div>

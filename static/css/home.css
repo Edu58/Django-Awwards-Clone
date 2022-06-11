@@ -1,0 +1,9 @@
+section .row .card {
+    width: auto;
+    height: 25rem;
+}
+
+section .row .card img {
+    height: 70%;
+    width: auto;
+}
