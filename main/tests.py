@@ -8,6 +8,9 @@ class TestProfile(TestCase):
     def setUp(self):
         self.john = User(username="john", first_name="john", last_name="bravo", email="john@gmail.com", password="john98765")
 
+    def tearDown(self):
+        self.john.delete()
+
     def test_user_instance(self):
         self.john.save()
         self.assertTrue(isinstance(self.john, User))
