@@ -1,7 +1,6 @@
-from distutils.command.upload import upload
-from re import T
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 # Create your models here.
@@ -18,3 +17,11 @@ class Project(models.Model):
     description = models.TextField(null=True, blank=True)
     link = models.URLField(null=True, blank=True)
     user = models.ForeignKey(User, related_name='projects', on_delete=models.CASCADE)
+
+
+class Rating(models.Model):
+    design = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+    usability = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+    content = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+    project = models.ForeignKey(Project, related_name='ratings', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='user_ratings', on_delete=models.CASCADE)
