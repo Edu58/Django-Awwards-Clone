@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import SubmitProjectForm
+from .forms import RateProjectForm, SubmitProjectForm
 from .models import Profile, Project, Rating
 
 # Create your views here.
@@ -35,8 +35,12 @@ def submit(request):
 
 
 def vote(request, project_id):
+    form = RateProjectForm()
     project = Project.get_project_by_id(project_id)
+
     context = {
-        'project': project
+        'project': project,
+        'form': form
     }
     return render(request, 'vote.html', context)
+

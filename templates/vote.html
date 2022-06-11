@@ -1,5 +1,6 @@
 {%extends 'base.html'%}
 {% load static %}
+{% load django_bootstrap5 %}
 
 {% block styles %}
 {{block.super}}
@@ -14,7 +15,10 @@
                 {{ project.user.username|title }}
             </span>&nbsp;from&nbsp;
             <span class="fw-bold">
-                {{ project.user.profile.country|title }}
+                {{ project.user.profile.country|title }} &nbsp;
+                <span class="fw-light">
+                    {{ project.created_at|timesince }} ago
+                </span>
             </span>
             </p>
         <img src="{{ project.user.profile.profile_pic.url }}" alt="{{ project.user.username }}" class="img-fluid project-profile">
@@ -27,15 +31,6 @@
 
         <div class="card mt-4">
             <div class="card-body">
-                <div class="details d-flex mt-4">
-                    <p class="fw-bold me-4">
-                        {{ project.user.username|title }}
-                    </p>
-                    <p class="fw-light">
-                        {{ project.created_at|timesince }}
-                    </p>
-                </div>
-
                 <div class="description">
                     <p class="fw-light">
                         {{ project.description }}
@@ -48,6 +43,22 @@
     <div class="user-votes card my-3">
        <div class="card-body">
          <h5 class="fw-light">USER VOTES</h5>
+
+         <div class="votes d-flex justify-content-between">
+            <div class="votes-list">
+
+            </div>
+            <div class="voting-form">
+                <p class="text-center fw-light">Rate this project</p>
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    {% bootstrap_form form layout='floating' %}
+
+                    <button class="btn btn-primary w-100">Submit</button>
+                </form>
+            </div>
+         </div>
        </div>
     </div>
 </section>
