@@ -1,6 +1,5 @@
-from dataclasses import fields
 from django import forms
-from .models import Project
+from .models import Project, Rating
 
 
 class SubmitProjectForm(forms.ModelForm):
@@ -14,3 +13,8 @@ class SubmitProjectForm(forms.ModelForm):
             'link': forms.URLInput(attrs={'placeholder': 'https://project-link.com'}),
             'description': forms.Textarea(attrs={'cols': 20, 'placeholder': 'what is your project all about?'})
         }
+
+class RateProjectForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ('design', 'usability', 'content', )
