@@ -30,6 +30,13 @@
             <img src="{{ project.landing_page.url }}" alt="{{ project.title }}" class="img-fluid">
         </div>
 
+        {% if project.link %}
+        <div class="text-center mt-3">
+            <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="fw-bold" id="live-link"><span
+                    class="fw-light">Project Link</span> &nbsp; 👉 &nbsp; {{ project.link }}</a>
+        </div>
+        {% endif %}
+
         <div class="card mt-4">
             <div class="card-body">
                 <div class="description">

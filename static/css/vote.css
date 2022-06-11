@@ -9,6 +9,10 @@
     width: auto;
 }
 
+#live-link {
+    color: #213b52;
+}
+
 @media screen and (max-width: 767px) {
     .user-votes .card-body h5 {
         text-align: center;
