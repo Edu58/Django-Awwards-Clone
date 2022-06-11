@@ -9,7 +9,6 @@ def index(request):
 
 def home(request):
     all_projects = Project.objects.all()
-
     context = {
         'projects': all_projects,
     }

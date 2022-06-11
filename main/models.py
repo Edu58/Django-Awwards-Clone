@@ -48,3 +48,12 @@ class Rating(models.Model):
 
     def __str__(self):
         return f'design-{self.design}, usability-{self.usability}, content-{self.content}'
+
+    @classmethod
+    def get_rating_average(cls, project_id):
+        ratings = cls.objects.filter(project=project_id)
+        
+        if ratings:
+            return ratings
+        
+        return ratings
