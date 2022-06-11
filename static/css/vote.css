@@ -13,7 +13,16 @@
     color: #213b52;
 }
 
+#btn-vote {
+    background-color: #213b52;
+}
+
+#btn-vote:hover {
+    background-color: #fdc134;
+}
+
 @media screen and (max-width: 767px) {
+
     .user-votes .card-body h5 {
         text-align: center;
     }

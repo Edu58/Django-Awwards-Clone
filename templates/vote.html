@@ -16,7 +16,7 @@
             </span>&nbsp;from&nbsp;
             <span class="fw-bold">
                 {{ project.user.profile.country|title }} &nbsp;
-                <span class="fw-light">
+                <span class="fw-light" id="time-created-in-voting">
                     {{ project.created_at|timesince }} ago
                 </span>
             </span>
@@ -33,7 +33,8 @@
         {% if project.link %}
         <div class="text-center mt-3">
             <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="fw-bold" id="live-link"><span
-                    class="fw-light">Project Link</span> &nbsp; 👉 &nbsp; {{ project.link }}</a>
+                    class="fw-light">Project Link</span> &nbsp; 👉 &nbsp; <span
+                        class="badge bg-secondary">{{ project.link }}</span></a>
         </div>
         {% endif %}
 
@@ -61,10 +62,10 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">USER</th>
-                                        <th scope="col">DESIGN</th>
-                                        <th scope="col">USABILITY</th>
-                                        <th scope="col">CONTENT</th>
+                                        <th scope="col">user</th>
+                                        <th scope="col">design</th>
+                                        <th scope="col">usability</th>
+                                        <th scope="col">content</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -94,7 +95,7 @@
 
                             {% bootstrap_form form layout='floating' %}
 
-                            <button class="btn btn-primary w-100">Vote</button>
+                            <button class="btn text-light w-100" id="btn-vote">Vote</button>
                         </form>
                     </div>
                 </div>
@@ -102,9 +103,4 @@
         </div>
     </div>
 </section>
-
-{% block scripts %}
-{% bootstrap_javascript %}
-<script src="{% static 'js/vote.js' %}"></script>
-{% endblock scripts %}
 {% endblock content %}
