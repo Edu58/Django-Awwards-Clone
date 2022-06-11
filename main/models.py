@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -6,6 +7,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(
+        default='./static/images/default-website-landing-page.png', upload_to='profile/')
     bio = models.TextField(null=True, blank=True)
     portfolio = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
