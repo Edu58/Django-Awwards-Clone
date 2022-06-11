@@ -26,6 +26,9 @@ class Project(models.Model):
     def __str__(self) -> str:
         return self.title
 
+    class Meta:
+        ordering = ['-created_at']
+
 
 class Rating(models.Model):
     design = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
