@@ -1,10 +1,10 @@
 from django.shortcuts import redirect, render
 from .forms import SubmitProjectForm
-
+from .models import Profile, Project, Rating
 
 # Create your views here.
 def index(request):
-    print(request.user)
+    all_projects = Project.objects.all()
     return render(request, 'index.html')
 
 def home(request):

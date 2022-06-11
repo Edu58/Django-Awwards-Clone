@@ -9,6 +9,7 @@ class Profile(models.Model):
     bio = models.TextField(null=True, blank=True)
     portfolio = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.user.username
@@ -19,6 +20,7 @@ class Project(models.Model):
     link = models.URLField(null=True, blank=True)
     landing_page = models.ImageField(default='./static/images/default-website-landing-page.png', upload_to='photos/')
     description = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, related_name='projects', on_delete=models.CASCADE)
 
     def __str__(self) -> str:
@@ -29,5 +31,6 @@ class Rating(models.Model):
     design = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
     usability = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
     content = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
+    created_at = models.DateTimeField(auto_now_add=True)
     project = models.ForeignKey(Project, related_name='ratings', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='user_ratings', on_delete=models.CASCADE)
