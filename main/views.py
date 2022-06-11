@@ -7,3 +7,6 @@ def index(request):
 
 def home(request):
     return render(request, 'home.html')
+
+def submit(request):
+    return render(request, 'submit.html')
