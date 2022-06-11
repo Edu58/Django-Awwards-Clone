@@ -20,8 +20,9 @@
                     {{ project.created_at|timesince }} ago
                 </span>
             </span>
-            </p>
-        <img src="{{ project.user.profile.profile_pic.url }}" alt="{{ project.user.username }}" class="img-fluid project-profile">
+        </p>
+        <img src="{{ project.user.profile.profile_pic.url }}" alt="{{ project.user.username }}"
+            class="img-fluid project-profile">
     </div>
 
     <div class="mt-4">
@@ -32,6 +33,7 @@
         <div class="card mt-4">
             <div class="card-body">
                 <div class="description">
+                    <h5 class="fw-light">PROJECT DESCRIPTION</h5>
                     <p class="fw-light">
                         {{ project.description }}
                     </p>
@@ -41,30 +43,57 @@
     </div>
 
     <div class="user-votes card my-3">
-       <div class="card-body">
-         <h5 class="fw-light">USER VOTES</h5>
+        <div class="card-body">
+            <h5 class="fw-light">USER VOTES</h5>
 
-         <div class="votes d-flex justify-content-between">
-            <div class="votes-list">
+            <div class="votes d-flex justify-content-between">
+                <div class="votes-list w-75 pe-5">
+                    {% if project.ratings.all %}
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">USER</th>
+                                        <th scope="col">DESIGN</th>
+                                        <th scope="col">USABILITY</th>
+                                        <th scope="col">CONTENT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for rating in project.ratings.all %}
+                                    <tr>
+                                        <th scope="row">{{ rating.user.username }}</th>
+                                        <td>{{ rating.design|floatformat:1 }}</td>
+                                        <td>{{ rating.usability|floatformat:1  }}</td>
+                                        <td>{{ rating.content|floatformat:1  }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    {% else %}
+                    <h5 class="fw-light text-center">NO VOTES</h5>
+                    {% endif %}
+                </div>
+                <div class="voting-form">
+                    <p class="text-center fw-light">Rate out of 10</p>
+                    <form action="{% url 'rate' project.id %}" method="post">
+                        {% csrf_token %}
 
+                        {% bootstrap_form form layout='floating' %}
+
+                        <button class="btn btn-primary w-100">Vote</button>
+                    </form>
+                </div>
             </div>
-            <div class="voting-form">
-                <p class="text-center fw-light">Rate out of 10</p>
-                <form action="{% url 'rate' project.id %}" method="post">
-                    {% csrf_token %}
-
-                    {% bootstrap_form form layout='floating' %}
-
-                    <button class="btn btn-primary w-100">Submit</button>
-                </form>
-            </div>
-         </div>
-       </div>
+        </div>
     </div>
 </section>
 
-    {% block scripts %}
-    {% bootstrap_javascript %}
-    <script src="{% static 'js/vote.js' %}"></script>
-    {% endblock scripts %}
+{% block scripts %}
+{% bootstrap_javascript %}
+<script src="{% static 'js/vote.js' %}"></script>
+{% endblock scripts %}
 {% endblock content %}
