@@ -17,7 +17,38 @@
                 {{ project.user.profile.country|title }}
             </span>
             </p>
-        <img src="{{ project.user.profile.profile_pic.url }}" alt="" class="img-fluid profile">
+        <img src="{{ project.user.profile.profile_pic.url }}" alt="{{ project.user.username }}" class="img-fluid project-profile">
+    </div>
+
+    <div class="mt-4">
+        <div class="project-pic text-center">
+            <img src="{{ project.landing_page.url }}" alt="{{ project.title }}" class="img-fluid">
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <div class="details d-flex mt-4">
+                    <p class="fw-bold me-4">
+                        {{ project.user.username|title }}
+                    </p>
+                    <p class="fw-light">
+                        {{ project.created_at|timesince }}
+                    </p>
+                </div>
+
+                <div class="description">
+                    <p class="fw-light">
+                        {{ project.description }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-votes card my-3">
+       <div class="card-body">
+         <h5 class="fw-light">USER VOTES</h5>
+       </div>
     </div>
 </section>
 {% endblock content %}

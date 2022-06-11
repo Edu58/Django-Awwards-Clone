@@ -1,5 +1,10 @@
-.content img.profile {
+.content img.project-profile {
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
+}
+
+.content .project-pic img {
+    max-height: 25rem;
+    width: auto;
 }
