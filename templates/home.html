@@ -14,10 +14,20 @@
             <div class="card">
                 <img src="{{ project.landing_page.url }}" class="card-img-top img-fluid" alt="...">
                 <div class="card-body">
-                     <div class="d-flex justify-content-between">
+                     <div>
                         <p class="card-title fw-bold">
                             {{ project.title|title }}
                         </p>
+                     </div>
+                     <div class="d-flex justify-content-between">
+                        {% if user.profile.country %}
+                        <p>
+                            <small class="fw-light">
+                                From {{ user.profile.country|title }}
+                            </small>
+                        </p>
+                        {% endif %}
+                        
                         <p>
                             <small class="fw-light">
                                 {{ project.created_at|date:"M d Y"}}
