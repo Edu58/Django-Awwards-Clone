@@ -9,6 +9,7 @@ class Profile(models.Model):
     bio = models.TextField(null=True, blank=True)
     portfolio = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
+    country = models.CharField(max_length=30, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
