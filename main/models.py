@@ -10,13 +10,19 @@ class Profile(models.Model):
     portfolio = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
 
+    def __str__(self) -> str:
+        return self.user.username
+
 
 class Project(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
+    link = models.URLField(null=True, blank=True)
     landing_page = models.ImageField(default='./static/images/default-website-landing-page.png', upload_to='photos/')
     description = models.TextField(null=True, blank=True)
-    link = models.URLField(null=True, blank=True)
     user = models.ForeignKey(User, related_name='projects', on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.title
 
 
 class Rating(models.Model):

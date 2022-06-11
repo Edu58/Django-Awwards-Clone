@@ -11,6 +11,6 @@ class SubmitProjectForm(forms.ModelForm):
         fields = ('title', 'landing_page', 'description', 'link', )
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'project title'}),
-            'link': forms.URLInput(attrs={'placeholder': 'project link'}),
+            'link': forms.URLInput(attrs={'placeholder': 'https://project-link.com'}),
             'description': forms.Textarea(attrs={'cols': 20, 'placeholder': 'what is your project all about?'})
         }
