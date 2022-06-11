@@ -8,10 +8,11 @@ def index(request):
 
 def home(request):
     all_projects = Project.objects.all()
+
     context = {
         'projects': all_projects,
     }
-    return render(request, 'home.html', all_projects)
+    return render(request, 'home.html', context)
 
 def submit(request):
     form = SubmitProjectForm()
