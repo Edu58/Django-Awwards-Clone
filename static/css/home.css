@@ -6,6 +6,7 @@ section .row .card {
 section .row .card img {
     height: 70%;
     width: auto;
+    object-fit: cover;
 }
 
 section .row .card .card-body img {
@@ -16,6 +17,30 @@ section .row .card .card-body img {
 
 #project-title {
     color: #213b52;
+}
+
+section .row .card img.blur {
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+
+.row .card .details {
+    top: 25%;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    z-index: 1000;
+}
+
+#details a {
+    background-color: #213b52;
+    padding: .5rem 2rem;
+    border-radius: 25px;
+    transition: .3s ease-in-out;
+}
+
+#details a:hover {
+    background-color: #fdc134;
 }
 
 @media screen and (max-width: 768px) {

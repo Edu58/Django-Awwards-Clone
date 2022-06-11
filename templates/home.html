@@ -4,24 +4,32 @@
 {% block styles %}
 {{block.super}}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
-{% endblock styles %}
+{% endblock %}
+
+{% block title %}Awaards Clone{% endblock %}
 
 {% block content %}
 <section class="content container">
     <div class="row">
         {% for project in projects %}
         <div class="col-md-6 col-lg-4 my-4">
-            <div class="card">
-                <img src="{{ project.landing_page.url }}" class="card-img-top img-fluid" alt="...">
+            <div class="card" id="project-card">
+                <img src="{{ project.landing_page.url }}" class="project-image card-img-top img-fluid image"
+                    alt="{{ project.title }}">
+
+                <div class="details position-absolute fw-bold fs-4" id="details">
+                    <a href="{% url 'vote' project.id %}" class="text-light">vote</a>
+                </div>
+
                 <div class="card-body">
-                     <div>
+                    <div>
                         <p class="card-title fw-bold">
                             <a href="{% url 'vote' project.id %}" id="project-title">
                                 {{ project.title|title }}
                             </a>
                         </p>
-                     </div>
-                     <div class="d-flex justify-content-between">
+                    </div>
+                    <div class="d-flex justify-content-between">
                         {% if project.user.profile.country %}
                         <p>
                             <small class="fw-light">
@@ -35,19 +43,27 @@
                                 {{ project.created_at|date:"M d Y"}}
                             </small>
                         </p>
-                     </div>
-                     <div class="profile mt-2">
-                         <img src="{{ user.profile.profile_pic.url }}" alt="" class="img-fluid">
-                         <small class="ms-2 fw-light">BY
+                    </div>
+                    <div class="profile mt-2">
+                        <img src="{{ user.profile.profile_pic.url }}" alt="" class="img-fluid">
+                        <small class="ms-2 fw-light">BY
                             <span class="fw-bold">
-                                {{ project.user.username|title }}
-                            </small>
-                         </span>
-                     </div>
+                                {{ project.user.username }}
+                        </small>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </section>
-{% endblock content %}
+
+{% block extrahead %}
+{{block.super}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="{% static 'js/home.js' %}"></script>
+{% endblock %}
+{% endblock %}

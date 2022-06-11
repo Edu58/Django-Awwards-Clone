@@ -1,0 +1,43 @@
+.content img.project-profile {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+}
+
+.content .project-pic img {
+    max-height: 25rem;
+    width: auto;
+}
+
+#live-link {
+    color: #213b52;
+}
+
+#btn-vote {
+    background-color: #213b52;
+}
+
+#btn-vote:hover {
+    background-color: #fdc134;
+}
+
+@media screen and (max-width: 767px) {
+
+    .user-votes .card-body h5 {
+        text-align: center;
+    }
+
+    .user-votes .votes {
+        flex-direction: column-reverse !important;
+    }
+
+    .user-votes .votes .votes-list {
+        padding-right: 0 !important;
+        width: 100% !important;
+        margin-top: 2rem !important;
+    }
+
+    .user-votes .votes .votes-list .card {
+        margin: auto !important;
+    }
+}
