@@ -9,3 +9,8 @@ class SubmitProjectForm(forms.ModelForm):
         model = Project
         exclude = ("user", )
         fields = ('title', 'landing_page', 'description', 'link', )
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'project title'}),
+            'link': forms.URLInput(attrs={'placeholder': 'project link'}),
+            'description': forms.Textarea(attrs={'cols': 20, 'placeholder': 'what is your project all about?'})
+        }

@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from .forms import SubmitProjectForm
 
 
 # Create your views here.
@@ -9,4 +10,13 @@ def home(request):
     return render(request, 'home.html')
 
 def submit(request):
-    return render(request, 'submit.html')
+    form = SubmitProjectForm()
+
+    if request.method == "POST":
+        print('hello')
+        return redirect('home')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'submit.html', context)

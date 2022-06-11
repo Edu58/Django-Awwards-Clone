@@ -1,11 +1,25 @@
 {%extends 'base.html'%}
+{% load django_bootstrap5 %}
 {% load static %}
 
 {% block styles %}
 {{block.super}}
-<link rel="stylesheet" href="{% static 'css/submission.css' %}">
+<link rel="stylesheet" href="{% static 'css/submit.css' %}">
 {% endblock styles %}
 
 {% block content %}
+<section class="container mt-4">
+    <div class="text-center mb-4">
+        <h3 class="fw-bold">
+            Standard Submission
+        </h3>
+    </div>
+    <form action="{% url 'submit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
+        {% bootstrap_form form layout='horizontal' %}
+        
+        <button class="btn btn-primary w-100">Submit</button>
+    </form>
+</section>
 {% endblock content %}
