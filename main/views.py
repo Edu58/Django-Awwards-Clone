@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import SubmitProjectForm
 from .models import Profile, Project, Rating
 
@@ -34,5 +34,9 @@ def submit(request):
     return render(request, 'submit.html', context)
 
 
-def vote(request):
+def vote(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+
+    
+
     return render(request, 'vote.html')

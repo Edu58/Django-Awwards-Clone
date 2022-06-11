@@ -1,4 +1,4 @@
-from distutils.command.upload import upload
+from django.shortcuts import get_object_or_404
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -33,6 +33,10 @@ class Project(models.Model):
     class Meta:
         ordering = ['-created_at']
 
+    @classmethod
+    def get_project_by_id(cls, project_id):
+        project = get_object_or_404(cls, pk=project_id)
+        return project
 
 class Rating(models.Model):
     design = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
