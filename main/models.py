@@ -13,7 +13,7 @@ class Profile(models.Model):
 
 class Project(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
-    landing_page = models.ImageField(upload_to='photos/', null=False, blank=False)
+    landing_page = models.ImageField(default='./static/images/default-website-landing-page.png', upload_to='photos/')
     description = models.TextField(null=True, blank=True)
     link = models.URLField(null=True, blank=True)
     user = models.ForeignKey(User, related_name='projects', on_delete=models.CASCADE)
