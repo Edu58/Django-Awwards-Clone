@@ -4,11 +4,14 @@ from .models import Profile, Project, Rating
 
 # Create your views here.
 def index(request):
-    all_projects = Project.objects.all()
     return render(request, 'index.html')
 
 def home(request):
-    return render(request, 'home.html')
+    all_projects = Project.objects.all()
+    context = {
+        'projects': all_projects,
+    }
+    return render(request, 'home.html', all_projects)
 
 def submit(request):
     form = SubmitProjectForm()
