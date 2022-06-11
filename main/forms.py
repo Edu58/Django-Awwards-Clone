@@ -18,3 +18,8 @@ class RateProjectForm(forms.ModelForm):
     class Meta:
         model = Rating
         fields = ('design', 'usability', 'content', )
+        widgets = {
+            'design': forms.NumberInput(attrs={'min':0, 'max':10}),
+            'usability': forms.NumberInput(attrs={'min': 0, 'max': 10}),
+            'content': forms.NumberInput(attrs={'min': 0, 'max': 10}),
+        }

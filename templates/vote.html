@@ -49,8 +49,8 @@
 
             </div>
             <div class="voting-form">
-                <p class="text-center fw-light">Rate this project</p>
-                <form action="" method="post">
+                <p class="text-center fw-light">Rate out of 10</p>
+                <form action="{% url 'rate' project.id %}" method="post">
                     {% csrf_token %}
 
                     {% bootstrap_form form layout='floating' %}
@@ -62,4 +62,9 @@
        </div>
     </div>
 </section>
+
+    {% block scripts %}
+    {% bootstrap_javascript %}
+    <script src="{% static 'js/vote.js' %}"></script>
+    {% endblock scripts %}
 {% endblock content %}
