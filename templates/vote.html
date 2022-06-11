@@ -77,15 +77,19 @@
                     <h5 class="fw-light text-center">NO VOTES</h5>
                     {% endif %}
                 </div>
-                <div class="voting-form">
-                    <p class="text-center fw-light">Rate out of 10</p>
-                    <form action="{% url 'rate' project.id %}" method="post">
-                        {% csrf_token %}
+                <div class="voting-form card">
+                    <div class="card-header">
+                        <p class="text-center fw-light">Rate out of 10</p>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'rate' project.id %}" method="post">
+                            {% csrf_token %}
 
-                        {% bootstrap_form form layout='floating' %}
+                            {% bootstrap_form form layout='floating' %}
 
-                        <button class="btn btn-primary w-100">Vote</button>
-                    </form>
+                            <button class="btn btn-primary w-100">Vote</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
