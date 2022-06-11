@@ -36,20 +36,34 @@ class TestProject(TestCase):
     def setUp(self):
         self.john = User(username="john", first_name="john", last_name="bravo", email="john@gmail.com", password="john98765")
         self.john.save()
+
         self.john_profile = Profile(user=self.john ,bio="I am johny bravo", portfolio="https://johnthedev.com", github="https://github.com/john")
         self.john_profile.save()
+
+        self.new_project = Project(
+            title="Awaards Clone",
+            landing_page="./static/images/default-website-landing-page.png",
+            description="This is a clone for the famous Awaards website",
+            link="https://awaards-clone.co.ke",
+            user=self.john
+        )
+
+        self.new_project_with_no_landing_page = Project(
+            title="Awaards Clone",
+            description="This is a clone for the famous Awaards website",
+            link="https://awaards-clone.co.ke",
+            user=self.john
+        )
 
     def tearDown(self):
         self.john.delete()
 
     def test_project_instance(self):
-        self.new_project = Project(
-            title="Awaards Clone", 
-            landing_page="./static/images/default-website-landing-page.png", 
-            description="This is a clone for the famous Awaards website",
-            link = "https://awaards-clone.co.ke",
-            user = self.john
-            )
-
+        self.new_project.save()
         self.assertTrue(self.new_project, Project)
-        
+
+    def test_missing_landing_page(self):
+        self.new_project_with_no_landing_page.save()
+        self.assertTrue(self.new_project, Project)
+        self.assertTrue(self.new_project_with_no_landing_page.landing_page,
+                        './static/images/default-website-landing-page.png')
