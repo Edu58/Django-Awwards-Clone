@@ -93,6 +93,10 @@ h6 {
     color: #fff;
 }
 
+#submit:hover {
+    color: #FFF;
+}
+
 /* Mobile Navigation */
 .mobile-nav-toggle {
     color: #fdc134;

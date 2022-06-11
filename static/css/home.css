@@ -1,6 +1,6 @@
 section .row .card {
     width: auto;
-    height: 25rem;
+    height: 28rem;
 }
 
 section .row .card img {
@@ -12,4 +12,16 @@ section .row .card .card-body img {
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
+}
+
+@media screen and (max-width: 768px) {
+    section .row .card {
+        width: auto;
+        height: 25rem;
+    }
+
+    section .row .card img {
+        height: 60%;
+        width: auto;
+    }
 }

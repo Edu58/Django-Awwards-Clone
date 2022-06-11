@@ -7,11 +7,12 @@
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About Us</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Login</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Signup</a></li>
+                <li><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
+                <li><a class="nav-link" href="#about">About Us</a></li>
+                <li><a class="nav-link fw-bold text-warning" href="{% url 'submit' %}" id="submit">Submit</a></li>
+                <li><a class="nav-link" href="#contact">Login</a></li>
+                 <li><a class="nav-link" href="#contact">Logout</a></li>
+                <li><a class="nav-link" href="#contact">Signup</a></li>
             </ul>
             <i class='bx bx-menu mobile-nav-toggle fs-1' id="menu-icon"></i>
         </nav>
