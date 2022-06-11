@@ -45,3 +45,6 @@ class Rating(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     project = models.ForeignKey(Project, related_name='ratings', on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name='user_ratings', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'design-{self.design}, usability-{self.usability}, content-{self.content}'
