@@ -14,6 +14,10 @@ section .row .card .card-body img {
     border-radius: 50%;
 }
 
+#project-title {
+    color: #213b52;
+}
+
 @media screen and (max-width: 768px) {
     section .row .card {
         width: auto;

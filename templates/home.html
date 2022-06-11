@@ -16,7 +16,9 @@
                 <div class="card-body">
                      <div>
                         <p class="card-title fw-bold">
-                            {{ project.title|title }}
+                            <a href="{% url 'vote' project.id %}" id="project-title">
+                                {{ project.title|title }}
+                            </a>
                         </p>
                      </div>
                      <div class="d-flex justify-content-between">
@@ -42,11 +44,6 @@
                             </small>
                          </span>
                      </div>
-
-                     <p class="bg-primary">
-                        <a href="{% url 'vote' project.id %}">Vote</a>
-                     </p>
-                     
                 </div>
             </div>
         </div>
