@@ -7,6 +7,11 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import LoginUserForm
 
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+from .serializers import ProfilesSerializer
+
 
 def signup_user(request):
     form = SignUpForm()
@@ -164,3 +169,15 @@ def update_profile(request):
 def logout_user(request):
     logout(request)
     return redirect('login')
+
+
+# DRF API
+class ProfilesListView(APIView):
+    def get(self, request, format=None):
+        try:
+            data = Profile.objects.all()
+            if data:
+                serializers = ProfilesSerializer(data, many=True).data
+                return Response(serializers)
+        except:
+            return None
