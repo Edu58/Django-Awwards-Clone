@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import RateProjectForm, SubmitProjectForm, SignUpForm
 from .models import Profile, Project, Rating
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
@@ -119,7 +120,12 @@ def rate_project(request, project_id):
 
 @login_required(login_url='login')
 def profile(request, username):
-    return render(request, 'profile.html')
+    user = get_object_or_404(User, username=username)
+
+    context = {
+        'user':user
+    }
+    return render(request, 'profile.html', context)
 
 
 @login_required(login_url='login')
