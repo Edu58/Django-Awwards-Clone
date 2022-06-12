@@ -16,7 +16,7 @@ urlpatterns = [
     path('update-profile/', views.update_profile, name='update_profile'),
     path('api/profiles/', views.ProfilesListView.as_view()),
     path('api/projects/', views.ProjectsListView.as_view()),
-    path("api-token/", obtain_auth_token),
+    path("api/token/", obtain_auth_token),
     path('login/', views.login_user, name='login'),
     path('signup/', views.signup_user, name='signup'),
     path('logout/', views.logout_user, name='logout'),

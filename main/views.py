@@ -11,7 +11,6 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import ProfilesSerializer, ProjectsSerializer
-from main import serializers
 from .permissions import IsAdminOrReadOnly
 
 
@@ -175,7 +174,7 @@ def logout_user(request):
 
 # DRF API
 class ProfilesListView(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly, )
     def get(self, request, format=None):
         try:
             data = Profile.objects.all()
@@ -183,7 +182,7 @@ class ProfilesListView(APIView):
                 serializers = ProfilesSerializer(data, many=True).data
                 return Response(serializers, status=status.HTTP_200_OK)
         except:
-            return None
+            return Response(None, status=status.HTTP_404_NOT_FOUND)
 
     def post(self, request, format=None):
         serializers = ProfilesSerializer(data=request.data)
@@ -196,7 +195,7 @@ class ProfilesListView(APIView):
 
 
 class ProjectsListView(APIView):
-    permission_classes = (IsAdminOrReadOnly,)
+    permission_classes = (IsAdminOrReadOnly, )
     def get(self, request, format=None):
         try:
             data = Project.objects.all()
