@@ -20,6 +20,12 @@ class Profile(models.Model):
     def __str__(self) -> str:
         return self.user.username
 
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
+        self.delete()
+
 
 class Project(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
@@ -56,6 +62,12 @@ class Project(models.Model):
         except:
             return None
 
+    def save_project(self):
+        self.save()
+
+    def delete_project(self):
+        self.delete()
+
 class Rating(models.Model):
     design = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
     usability = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
@@ -66,3 +78,9 @@ class Rating(models.Model):
 
     def __str__(self):
         return f'design-{self.design}, usability-{self.usability}, content-{self.content}'
+
+    def save_rating(self):
+        self.save()
+
+    def delete_rating(self):
+        self.delete()
