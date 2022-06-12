@@ -122,8 +122,16 @@ def rate_project(request, project_id):
 def profile(request, username):
     user = get_object_or_404(User, username=username)
 
+    can_update = False
+
+    if request.user == user:
+        can_update = True
+    else:
+        can_update = False
+
     context = {
-        'user':user
+        'user':user,
+        'can_update': can_update
     }
     return render(request, 'profile.html', context)
 
