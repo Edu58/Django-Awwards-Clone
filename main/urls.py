@@ -10,7 +10,8 @@ urlpatterns = [
     path('home/', views.home, name='home'),
     path('submit/', views.submit, name='submit'),
     path('vote/<int:project_id>/', views.vote, name='vote'),
-    path('rate/<int:project_id>/', views.rate_project, name='rate')
+    path('rate/<int:project_id>/', views.rate_project, name='rate'),
+    path('profile/<username>', views.profile, name='profile'),
 ]
 
 if settings.DEBUG:

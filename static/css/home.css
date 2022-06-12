@@ -29,7 +29,8 @@ section .row .card .card-body img {
     border-radius: 50%;
 }
 
-#project-title {
+#project-title,
+#project-profile {
     color: #213b52;
 }
 

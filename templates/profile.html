@@ -1,0 +1,88 @@
+{%extends 'base.html'%}
+{% load static %}
+{% load django_bootstrap5 %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock styles %}
+
+{% block content %}
+<section class="container d-flex flex-column justify-content-center align-items-center">
+    <div class="profile d-flex justify-content-around">
+        <div class="dp pe-5">
+            {% if user.profile.profile_pic %}
+            <img src="{{ user.profile.profile_pic.url }}" alt="">
+            {% else %}
+            <span>No Photo</span>
+            {% endif %}
+        </div>
+
+        <div class="profile-info">
+            <p>
+                <span class="fw-bold">Username</span> <br>
+                <span class="fw-light">
+                    {{user.username}}
+                </span>
+            </p>
+            <p class="fw-bold">
+                Portfolio <br>
+                <span class="fw-light">
+                    <a href="{{user.profile.portfolio}}" class="text-wrap contact-info-link" target="_blank" rel="noopener noreferrer">
+                        {{user.profile.portfolio}}
+                    </a>
+                </span>
+            </p>
+            <p class="fw-bold">
+                Github <br>
+                <span class="fw-light">
+                    <a href="{{user.profile.github}}" class="text-wrap contact-info-link" target="_blank"
+                        rel="noopener noreferrer">
+                        {{user.profile.github}}
+                    </a>
+                </span>
+            </p>
+            <p class="fw-bold">
+                Country <br>
+                <span class="fw-light">
+                    {{user.profile.country|title}}
+                </span>
+            </p>
+            {% if user.is_authenticated %}
+            {% comment %} <div>
+                <a href="{% url 'logout' %}">
+                    <button type="button" class="btn btn-sm btn-danger">logout</button>
+                </a>
+            </div> {% endcomment %}
+            {% endif %}
+
+            {% if user.profile.bio %}
+            <div class="bio fw-bold">
+                Bio <br>
+                <span class="fw-light">
+                    {{user.profile.bio|safe}}
+                </span>
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="my-posts mt-4 border-top text-center">
+        <p class="fs-6 fw-bold text-center pt-2">
+            <i class='bx bx-grid'></i>
+            PROJECTS
+        </p>
+
+        <div class="posts">
+            {% if user.projects.all %}
+            {% for project in user.projects.all %}
+            <img class="img-fluid" src="{{ project.landing_page.url }}" alt="">
+            {% endfor %}
+            {% else %}
+            <p class="mt-4">YOU HAVE NO PROJECTS</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -56,8 +56,7 @@
                     <div class="profile mt-2">
                         <img src="{{ user.profile.profile_pic.url }}" alt="" class="img-fluid">
                         <small class="ms-2 fw-light">BY
-                            <span class="fw-bold">
-                                {{ project.user.username }}
+                            <a href="{% url 'profile' project.user.username %}" class="fw-bold" id="project-profile">{{ project.user.username }}</a>
                         </small>
                         </span>
                     </div>

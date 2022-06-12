@@ -78,3 +78,7 @@ def rate_project(request, project_id):
             return redirect(reverse('vote', args=[project_id]))
             
     return redirect('home')
+
+
+def profile(request, username):
+    return render(request, 'profile.html')
