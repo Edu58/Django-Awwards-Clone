@@ -17,6 +17,7 @@
     <form action="{% url 'submit' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
 
+        {{ form.media }}
         {% bootstrap_form form layout='horizontal' %}
         
         <button class="btn btn-primary w-100">Submit</button>

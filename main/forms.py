@@ -1,5 +1,6 @@
 from django import forms
 from .models import Project, Rating
+from ckeditor.widgets import CKEditorWidget
 
 
 class SubmitProjectForm(forms.ModelForm):
@@ -11,7 +12,7 @@ class SubmitProjectForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'project title'}),
             'link': forms.URLInput(attrs={'placeholder': 'https://project-link.com'}),
-            'description': forms.Textarea(attrs={'cols': 20, 'placeholder': 'what is your project all about?'})
+            'description': forms.CharField(widget=CKEditorWidget())
         }
 
 class RateProjectForm(forms.ModelForm):
