@@ -3,7 +3,23 @@ from .forms import RateProjectForm, SubmitProjectForm
 from .models import Profile, Project, Rating
 from django.urls import reverse
 
-# Create your views here.
+
+def login_user(request):
+    form = LoginUserForm()
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password1')
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+
+    return render(request, 'login.html', {'form': form})
+
+
 def index(request):
     return render(request, 'index.html')
 
