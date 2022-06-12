@@ -1,3 +1,8 @@
+.container {
+    max-width: 50rem;
+}
+
+
 section form label {
     font-weight: 600 !important;
 }

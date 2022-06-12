@@ -52,13 +52,6 @@
                     {{user.profile.country|title}}
                 </span>
             </p>
-            {% if user.is_authenticated %}
-            {% comment %} <div>
-                <a href="{% url 'logout' %}">
-                    <button type="button" class="btn btn-sm btn-danger">logout</button>
-                </a>
-            </div> {% endcomment %}
-            {% endif %}
 
             {% if user.profile.bio %}
             <div class="bio fw-bold">
@@ -72,7 +65,7 @@
 
     </div>
 
-    <div class="my-posts mt-4 border-top text-center">
+    <div class="my-posts mt-4 border-top text-center w-100">
         <p class="fs-6 fw-bold text-center pt-2">
             <i class='bx bx-grid'></i>
             PROJECTS

@@ -2,11 +2,16 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/update-profile.css' %}">
+{% endblock %}
+
 {% block title %} Update Profile {% endblock title %}
 
 {% block content %}
 
-<div class="container w-50">
+<div class="container">
     {% if form.errors %}
     {% bootstrap_form_errors form layout='inline' %}
     {% endif %}
@@ -19,8 +24,9 @@
 
             <form action="{% url 'update_profile' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {% bootstrap_form user_form layout='floating' %}
-                {% bootstrap_form profile_form layout='floating' %}
+                {{ prof_form.media }}
+                {% bootstrap_form user_form %}
+                {% bootstrap_form prof_form %}
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary w-100">update</button>

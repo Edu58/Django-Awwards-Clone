@@ -139,7 +139,7 @@ def update_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-            return redirect('profile')
+            return redirect(reverse('profile', args=[request.user]))
     else:
         user_form = UserUpdateForm(instance=request.user)
         profile_form = UpdateProfileForm(instance=request.user.profile)

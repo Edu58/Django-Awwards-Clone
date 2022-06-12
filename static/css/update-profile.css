@@ -1,0 +1,8 @@
+.container {
+    max-width: 50rem;
+}
+
+
+.container .card form .form-floating .django-ckeditor-widget {
+    width: 100% !important;
+}
