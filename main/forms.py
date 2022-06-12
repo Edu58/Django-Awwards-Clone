@@ -5,11 +5,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 
-class LoginUserForm(UserCreationForm):
-    username = forms.CharField(required=True)
+class LoginUserForm(forms.Form):
+    username = forms.CharField(label='Username', required=True)
+    password = forms.CharField(label= 'Password',widget=forms.PasswordInput, required=True)
     class Meta:
         model = User
-        fields = ['username', 'password1']
+        fields = ['username', 'password']
 
 
 class SubmitProjectForm(forms.ModelForm):
