@@ -1,11 +1,23 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import RateProjectForm, SubmitProjectForm
+from .forms import RateProjectForm, SubmitProjectForm, SignUpForm
 from .models import Profile, Project, Rating
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .forms import LoginUserForm
 
+
+def signup_user(request):
+    form = SignUpForm()
+
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+
+    return render(request, 'signup.html', {'form': form})
 
 def login_user(request):
     form = LoginUserForm()
