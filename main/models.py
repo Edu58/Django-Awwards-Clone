@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from ckeditor.fields import RichTextField
+from django.db.models import Avg
 
 
 # Create your models here.
@@ -47,6 +48,14 @@ class Project(models.Model):
             return None
         return project
 
+    @property
+    def get_average_rating(self):
+        try:
+            average = self.ratings.all().aggregate(Avg('design'))
+            return average['design__avg']
+        except:
+            return None
+
 class Rating(models.Model):
     design = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
     usability = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
@@ -57,12 +66,3 @@ class Rating(models.Model):
 
     def __str__(self):
         return f'design-{self.design}, usability-{self.usability}, content-{self.content}'
-
-    @classmethod
-    def get_rating_average(cls, project_id):
-        ratings = cls.objects.filter(project=project_id)
-        
-        if ratings:
-            return ratings
-        
-        return ratings

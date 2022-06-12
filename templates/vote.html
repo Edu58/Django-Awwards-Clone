@@ -52,7 +52,16 @@
 
     <div class="user-votes card my-3">
         <div class="card-body">
-            <h5 class="fw-light">USER VOTES</h5>
+            <div class="d-flex flex-column">
+                <p class="fw-light fs-4">USER VOTES</p>
+                <p class="fw-light fs-5 ms-2"> Average Rating - 
+                    {% if project.get_average_rating is not None  %}
+                    {{ project.get_average_rating|floatformat:1 }}
+                    {% else %}
+                    0
+                    {% endif %}
+                </p>
+            </div>
 
             <div class="votes d-flex justify-content-between">
                 <div class="votes-list w-75 pe-5">
@@ -75,6 +84,7 @@
                                         <td>{{ rating.design|floatformat:1 }}</td>
                                         <td>{{ rating.usability|floatformat:1  }}</td>
                                         <td>{{ rating.content|floatformat:1  }}</td>
+                                        <td>{{ rating.get_design_average }}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
