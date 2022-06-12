@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import ProfilesSerializer
+from main import serializers
 
 
 def signup_user(request):
@@ -178,6 +179,15 @@ class ProfilesListView(APIView):
             data = Profile.objects.all()
             if data:
                 serializers = ProfilesSerializer(data, many=True).data
-                return Response(serializers)
+                return Response(serializers, status=status.HTTP_200_OK)
         except:
             return None
+
+    def post(self, request, format=None):
+        serializers = ProfilesSerializer(data=request.data)
+
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
