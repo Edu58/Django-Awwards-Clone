@@ -9,6 +9,11 @@ def index(request):
 
 def home(request):
     all_projects = Project.objects.all()
+
+    if request.method == "POST":
+        query = request.POST.get('project-query')
+        print(query)
+
     context = {
         'projects': all_projects,
     }

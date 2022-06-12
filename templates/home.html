@@ -11,10 +11,11 @@
 {% block content %}
 <section class="content container">
 
-    <form action="" method="post">
+    <form action="{% url 'home' %}" method="post">
+        {% csrf_token %}
         <div class="input-group my-3">
-            <input type="text" class="form-control shadow-none" placeholder="Project title" aria-label="Project title">
-            <button class="btn text-light shadow-none" type="button" id="search-button">Search</button>
+            <input type="text" name="project-query" class="form-control shadow-none" placeholder="Project title" aria-label="Project title" required>
+            <button class="btn text-light shadow-none" type="submit" id="search-button">Search</button>
         </div>
     </form>
 

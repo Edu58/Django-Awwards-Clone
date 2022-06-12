@@ -39,6 +39,14 @@ class Project(models.Model):
         project = get_object_or_404(cls, pk=project_id)
         return project
 
+    @classmethod
+    def get_project_by_title(cls, title):
+        try:
+            project = cls.objects.filter(title__icontains=title)
+        except:
+            return None
+        return project
+
 class Rating(models.Model):
     design = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
     usability = models.FloatField(null=False, blank=False, validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
