@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import RateProjectForm, SubmitProjectForm, SignUpForm
+from .forms import RateProjectForm, SubmitProjectForm, SignUpForm, UpdateProfileForm, UserUpdateForm
 from .models import Profile, Project, Rating
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -126,6 +126,30 @@ def profile(request, username):
         'user':user
     }
     return render(request, 'profile.html', context)
+
+
+@login_required(login_url='login')
+def update_profile(request):
+
+    if request.method == "POST":
+        user_form = UserUpdateForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(
+            request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile')
+    else:
+        user_form = UserUpdateForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    context = {
+        'user_form': user_form,
+        'prof_form': profile_form
+    }
+
+    return render(request, 'update-profile.html', context)
 
 
 @login_required(login_url='login')

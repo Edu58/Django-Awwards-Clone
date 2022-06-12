@@ -24,7 +24,11 @@
                 <span class="fw-light">
                     {{user.username}}
                 </span>
+                <a href="{% url 'update_profile' %}">
+                    <button type="button" class="btn btn-light btn-sm border ms-2">Edit Profile</button>
+                </a>
             </p>
+
             <p class="fw-bold">
                 Portfolio <br>
                 <span class="fw-light">
