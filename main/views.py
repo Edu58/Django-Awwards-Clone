@@ -120,3 +120,9 @@ def rate_project(request, project_id):
 @login_required(login_url='login')
 def profile(request, username):
     return render(request, 'profile.html')
+
+
+@login_required(login_url='login')
+def logout_user(request):
+    logout(request)
+    return redirect('login')

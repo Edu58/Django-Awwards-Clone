@@ -14,6 +14,7 @@ urlpatterns = [
     path('profile/<username>', views.profile, name='profile'),
     path('login/', views.login_user, name='login'),
     path('signup/', views.signup_user, name='signup'),
+    path('logout/', views.logout_user, name='logout'),
 ]
 
 if settings.DEBUG:
