@@ -6,11 +6,9 @@ from django.contrib.auth.models import User
 
 
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(required=True)
-    email = forms.EmailField(required=True)
     class Meta:
         model = User
-        fields = ['email', 'first_name', 'last_name', 'username', 'password', 'password1']
+        fields = ['username', 'email', 'password1', 'password2']
 
 
 class LoginUserForm(forms.Form):

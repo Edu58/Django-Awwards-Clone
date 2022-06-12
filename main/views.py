@@ -24,7 +24,7 @@ def login_user(request):
 
     if request.method == "POST":
         username = request.POST.get('username')
-        password = request.POST.get('password1')
+        password = request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
 
@@ -38,6 +38,8 @@ def login_user(request):
 def index(request):
     return render(request, 'index.html')
 
+
+@login_required(login_url='login')
 def home(request):
     all_projects = Project.objects.all()
 
@@ -56,6 +58,8 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+
+@login_required(login_url='login')
 def submit(request):
     form = SubmitProjectForm()
 
@@ -76,6 +80,7 @@ def submit(request):
     return render(request, 'submit.html', context)
 
 
+@login_required(login_url='login')
 def vote(request, project_id):
     form = RateProjectForm()
     project = Project.get_project_by_id(project_id)
@@ -87,6 +92,7 @@ def vote(request, project_id):
     return render(request, 'vote.html', context)
 
 
+@login_required(login_url='login')
 def rate_project(request, project_id):
     form = RateProjectForm()
 
@@ -111,5 +117,6 @@ def rate_project(request, project_id):
     return redirect('home')
 
 
+@login_required(login_url='login')
 def profile(request, username):
     return render(request, 'profile.html')
