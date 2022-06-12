@@ -58,16 +58,23 @@ def vote(request, project_id):
 
 def rate_project(request, project_id):
     form = RateProjectForm()
-    project = Project.get_project_by_id(project_id)
-    current_user = request.user
 
     if request.method == "POST":
         form = RateProjectForm(request.POST)
-
+        current_user = request.user
+        
         if form.is_valid():
-            new_rating = form.save(commit=False)
-            new_rating.project = project
-            new_rating.user = current_user
-            new_rating.save()
-            return redirect('home')
+            check_if_voted = Rating.objects.filter(user=current_user).exists()
+
+            if not check_if_voted:
+                project = Project.get_project_by_id(project_id)
+
+                new_rating = form.save(commit=False)
+                new_rating.project = project
+                new_rating.user = current_user
+                new_rating.save()
+                return redirect(reverse('vote', args=[project_id]))
+
+            return redirect(reverse('vote', args=[project_id]))
+            
     return redirect('home')
