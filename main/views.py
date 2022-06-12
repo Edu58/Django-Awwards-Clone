@@ -12,7 +12,13 @@ def home(request):
 
     if request.method == "POST":
         query = request.POST.get('project-query')
-        print(query)
+        results = Project.get_project_by_title(query)
+        
+        context = {
+            'projects': results,
+        }
+
+        return render(request, 'home.html', context)
 
     context = {
         'projects': all_projects,
