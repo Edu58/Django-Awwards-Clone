@@ -10,7 +10,7 @@ from .forms import LoginUserForm
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
-from .serializers import ProfilesSerializer
+from .serializers import ProfilesSerializer, ProjectsSerializer
 from main import serializers
 
 
@@ -190,4 +190,24 @@ class ProfilesListView(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProjectsListView(APIView):
+    def get(self, request, format=None):
+        try:
+            data = Project.objects.all()
+            if data:
+                serializers = ProjectsSerializer(data, many=True).data
+                return Response(serializers, status=status.HTTP_200_OK)
+        except:
+            return None
+
+    def post(self, request, format=None):
+        serializers = ProjectsSerializer(data=request.data)
+
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
