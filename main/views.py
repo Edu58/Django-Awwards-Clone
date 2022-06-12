@@ -12,6 +12,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from .serializers import ProfilesSerializer, ProjectsSerializer
 from main import serializers
+from .permissions import IsAdminOrReadOnly
 
 
 def signup_user(request):
@@ -174,6 +175,7 @@ def logout_user(request):
 
 # DRF API
 class ProfilesListView(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
         try:
             data = Profile.objects.all()
@@ -194,6 +196,7 @@ class ProfilesListView(APIView):
 
 
 class ProjectsListView(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
     def get(self, request, format=None):
         try:
             data = Project.objects.all()
