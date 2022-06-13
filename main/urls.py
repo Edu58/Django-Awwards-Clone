@@ -18,6 +18,7 @@ urlpatterns = [
     path('rate/<int:project_id>/', views.rate_project, name='rate'),
     path('profile/<username>/', views.profile, name='profile'),
     path('update-profile/', views.update_profile, name='update_profile'),
+    path('delete/<int:project_id>/', views.delete_project, name='delete'),
     path('api/profiles/', views.ProfilesListView.as_view()),
     path('api/projects/', views.ProjectsListView.as_view()),
     path("api/token/", obtain_auth_token),

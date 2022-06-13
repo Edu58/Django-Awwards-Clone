@@ -73,7 +73,7 @@
 
                         {% if user.id == project.user.id %}
                         <p>
-                            <a href="">
+                            <a href="{% url 'delete' project.id %}">
                                 <button type="button" class="btn btn-danger btn-sm fw-light">
                                     <small>delete</small>
                                 </button>

@@ -179,6 +179,22 @@ def update_profile(request):
 
 
 @login_required(login_url='login')
+def delete_project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+
+    if project:
+        project.delete()
+        messages.add_message(request, messages.SUCCESS,
+                             'Project deleted successfully')
+        return redirect('home')
+
+    messages.add_message(request, messages.WARNING,
+                         "Project doesn't exist")
+    return redirect('home')
+
+
+
+@login_required(login_url='login')
 def logout_user(request):
     logout(request)
     messages.add_message(request, messages.SUCCESS,'Logged out successfully')
