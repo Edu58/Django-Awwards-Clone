@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+{% load static %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block title %}About Us{% endblock %}
+
+{% block content %}
+<section class="min-vh-100">
+    <div class="container text-light">
+        <p class="fs-2 fw-bold text-center">
+            About US
+        </p>
+        <p class="text-center fs-1">
+            👋
+        </p>
+        <p class="text-center">
+            At Show-Case we provide you with a platform to showcase your work for free.
+            Doesn't matter which industry you're in, we got you covered. On top of taht, we help you get feedback in
+            terms
+            of rating from your users so
+            that you improve your customer experience and increase, make the necessary chaneges and improve your sales.
+        </p>
+    </div>
+</section>
+{% endblock content %}

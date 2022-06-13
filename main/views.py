@@ -51,6 +51,10 @@ def index(request):
     return render(request, 'index.html')
 
 
+def about(request):
+    return render(request, 'about-us.html')
+
+
 @login_required(login_url='login')
 def home(request):
     all_projects = Project.objects.all()

@@ -13,6 +13,7 @@ schema_view = get_swagger_view(title='Awwards API')
 urlpatterns = [
     path('', views.index, name='index'),
     path('home/', views.home, name='home'),
+    path('about-us/', views.about, name='about'),
     path('submit/', views.submit, name='submit'),
     path('vote/<int:project_id>/', views.vote, name='vote'),
     path('rate/<int:project_id>/', views.rate_project, name='rate'),

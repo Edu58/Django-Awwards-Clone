@@ -11,7 +11,7 @@
                 <li><a class="nav-link active" href="{% url 'home' %}">Home</a></li>
                 <li><a class="nav-link fw-bold text-warning" href="{% url 'submit' %}" id="submit">Submit</a></li>
                  <li><a class="nav-link" href="{% url 'profile' user.username %}">Profile</a></li>
-                 <li><a class="nav-link" href="#about">About Us</a></li>
+                 <li><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
                  <li><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
                 <li><a class="nav-link active" href="{% url 'index' %}">Home</a></li>
