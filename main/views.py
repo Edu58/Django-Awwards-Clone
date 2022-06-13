@@ -26,7 +26,8 @@ def signup_user(request):
             messages.add_mesage(request, messages.SUCCESS,'Account created successfully')
             return redirect('login')
 
-        messages.add_mesage(request, messages.WARNING,'Please provide data required')
+        messages.add_message(request, messages.WARNING,
+                             'Please provide the required credentials!')
     return render(request, 'signup.html', {'form': form})
 
 def login_user(request):
