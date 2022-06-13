@@ -41,7 +41,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request,'Logged in successfully')
-            return redirect('index')
+            return redirect('home')
 
         messages.warning(request,'Invalid email or password!')
     return render(request, 'login.html', {'form': form})
