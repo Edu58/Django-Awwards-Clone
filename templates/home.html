@@ -21,6 +21,7 @@
     </form>
 
     <div class="row">
+        {% if projects %}
         {% for project in projects %}
         <div class="col-md-6 col-lg-4 my-4">
             <div class="card" id="project-card">
@@ -85,6 +86,9 @@
             </div>
         </div>
         {% endfor %}
+        {% else %}
+        <p class="fs-4 fw-light text-center">Oops! No Projects at this moment</p>
+        {% endif %}
     </div>
 </section>
 

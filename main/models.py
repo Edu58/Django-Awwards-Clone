@@ -10,7 +10,7 @@ from django.db.models import Avg
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(
-        default='default-website-landing-page.png', upload_to='profile/')
+        default='media/profile/unknown-person_yaj2zi', upload_to='profile/')
     bio = RichTextField(null=True, blank=True)
     portfolio = models.URLField(null=True, blank=True)
     github = models.URLField(null=True, blank=True)
@@ -30,7 +30,8 @@ class Profile(models.Model):
 class Project(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
     link = models.URLField(null=True, blank=True)
-    landing_page = models.ImageField(default='./static/images/default-website-landing-page.png', upload_to='photos/')
+    landing_page = models.ImageField(
+        default='media/photos/default-project_n5fpfv', upload_to='photos/')
     description = RichTextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, related_name='projects', on_delete=models.CASCADE)
