@@ -99,6 +99,11 @@
                     <div class="card-header">
                         <p class="text-center fw-light">Rate out of 10</p>
                     </div>
+                    <div>
+                        {% if form.errors %}
+                        {% bootstrap_form_errors form layout='inline' %}
+                        {% endif %}
+                    </div>
                     <div class="card-body">
                         <form action="{% url 'rate' project.id %}" method="post">
                             {% csrf_token %}

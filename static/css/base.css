@@ -162,3 +162,7 @@ h6 {
 .navbar-mobile li:hover>a {
     color: #fdc134;
 }
+
+.messages p {
+    margin: 0 !important;
+}

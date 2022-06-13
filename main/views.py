@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .forms import LoginUserForm
 
 from rest_framework.response import Response
@@ -22,8 +23,10 @@ def signup_user(request):
 
         if form.is_valid():
             form.save()
+            messages.add_mesage(request, messages.SUCCESS,'Account created successfully')
             return redirect('login')
 
+        messages.add_mesage(request, messages.WARNING,'Please provide data required')
     return render(request, 'signup.html', {'form': form})
 
 def login_user(request):
@@ -37,8 +40,10 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
+            messages.add_message(request, messages.SUCCESS,'Logged in successfully')
             return redirect('index')
 
+        messages.add_message(request, messages.WARNING,'Invalid email or password!')
     return render(request, 'login.html', {'form': form})
 
 
@@ -78,7 +83,11 @@ def submit(request):
             project = form.save(commit=False)
             project.user = current_user
             project.save()
-        return redirect('home')
+            messages.add_message(request, messages.SUCCESS,'Project uploaded successfully')
+            return redirect('home')
+
+        messages.add_message(request, messages.WARNING,'Please provide valid data')
+        return render(request, 'submit.html', {'form': form})
 
     context = {
         'form': form
@@ -117,8 +126,10 @@ def rate_project(request, project_id):
                 new_rating.project = project
                 new_rating.user = current_user
                 new_rating.save()
+                messages.add_message(request, messages.SUCCESS,'Voted successfully')
                 return redirect(reverse('vote', args=[project_id]))
 
+            messages.add_message(request, messages.WARNING,'You have already voted for this project')
             return redirect(reverse('vote', args=[project_id]))
             
     return redirect('home')
@@ -153,6 +164,7 @@ def update_profile(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            messages.add_message(request, messages.SUCCESS,'Profile updated successfully')
             return redirect(reverse('profile', args=[request.user]))
     else:
         user_form = UserUpdateForm(instance=request.user)
@@ -169,6 +181,7 @@ def update_profile(request):
 @login_required(login_url='login')
 def logout_user(request):
     logout(request)
+    messages.add_message(request, messages.SUCCESS,'Logged out successfully')
     return redirect('login')
 
 
