@@ -14,7 +14,8 @@
     <form action="{% url 'home' %}" method="post">
         {% csrf_token %}
         <div class="input-group my-3">
-            <input type="text" name="project-query" class="form-control shadow-none" placeholder="Project title" aria-label="Project title" required>
+            <input type="text" name="project-query" class="form-control shadow-none" placeholder="Project title"
+                aria-label="Project title" required>
             <button class="btn text-light shadow-none" type="submit" id="search-button">Search</button>
         </div>
     </form>
@@ -53,17 +54,32 @@
                             </small>
                         </p>
                     </div>
-                    <div class="profile d-flex align-items-center mt-2">
-                        {% if project.user.profile.profile_pic %}
+                    <div class="profile d-flex justify-content-between align-items-center mt-2">
+                        <div class="d-flex">
+                            {% if project.user.profile.profile_pic %}
+                            <p>
+                                <img src="{{ project.user.profile.profile_pic.url }}" alt="" class="img-fluid">
+                            </p>
+                            {% else %}
+                            <p
+                                style="padding: 1rem; background-color: gray; border-radius:50%; height: .3rem; width: .3rem;">
+                            </p>
+                            {% endif %}
+                            <p class="ms-2 fw-light">BY
+                                <a href="{% url 'profile' project.user.username %}" class="fw-bold"
+                                    id="project-profile">{{ project.user.username }}</a>
+                            </p>
+                        </div>
+
+                        {% if user.id == project.user.id %}
                         <p>
-                            <img src="{{ project.user.profile.profile_pic.url }}" alt="" class="img-fluid">
+                            <a href="">
+                                <button type="button" class="btn btn-danger btn-sm fw-light">
+                                    <small>delete</small>
+                                </button>
+                            </a>
                         </p>
-                        {% else %}
-                        <p style="padding: 1rem; background-color: gray; border-radius:50%; height: .3rem; width: .3rem;"></p>
                         {% endif %}
-                        <p class="ms-2 fw-light">BY
-                            <a href="{% url 'profile' project.user.username %}" class="fw-bold" id="project-profile">{{ project.user.username }}</a>
-                        </p>
                     </div>
                 </div>
             </div>
